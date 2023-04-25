@@ -5,6 +5,7 @@ import cors from "cors";
 import path from "path";
 import { getAllTask } from "./controllers/Task-controller.js";
 import { addTask } from "./controllers/addTask-controller.js";
+import { toggleTask } from "./controllers/doneTask-controller.js";
 import { removeTask } from "./controllers/removeTask-controller.js";
 
 dotenv.config();
@@ -27,6 +28,8 @@ app.get("/", (req, res) => {
 app.get("/api/projects", getAllTask);
 
 app.post("/api/projects", addTask);
+
+app.patch("/api/projects/:id", toggleTask);
 
 app.delete("/api/projects/:id", removeTask);
 
