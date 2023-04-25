@@ -1,0 +1,94 @@
+swagger: "2.0"
+info:
+  title: ToDo API 🗒️
+  description: API for managing tasks in a ToDo app.
+  version: 1.0.0
+schemes:
+  - https
+paths:
+  /api/projects:
+    get:
+      summary: Retrieve a list of all ToDo items.
+      description: Returns an array of ToDo items stored in the database. Each item includes a unique ID, a description of the task (`todoTask`), and a boolean value (`done`) indicating whether the task is completed or not.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: "60f7ea20b5d7a23d4c3744b0"
+                todoTask:
+                  type: string
+                  example: "Buy groceries"
+                done:
+                  type: boolean
+                  example: false
+    post:
+      summary: Create a new ToDo item.
+      description: Adds a new ToDo item to the database. The request body should include a `todoTask` field with the text of the task and a `done` field with a boolean value indicating whether the task is completed or not.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            properties:
+              todoTask:
+                type: string
+                example: "Buy groceries"
+              done:
+                type: boolean
+                example: false
+      responses:
+        201:
+          description: Created
+    /api/projects/{id}:
+    patch:
+      summary: Update a ToDo item.
+      description: Updates the `done` status of the ToDo item with the specified ID. The request body should include a `done` field with a boolean value indicating whether the task is completed or not.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: string
+          description: The ID of the ToDo item to update.
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            properties:
+              done:
+                type: boolean
+                example: true
+      responses:
+        200:
+          description: OK
+    delete:
+      summary: Delete a ToDo item.
+      description: Deletes the ToDo item with the specified ID from the database.
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: string
+          description: The ID of the ToDo item to delete.
+      responses:
+        204:
+          description: No Content
