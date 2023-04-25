@@ -9,6 +9,9 @@ const TaskSchema = new Schema({
     type: Schema.Types.Boolean,
     required: true,
   },
+  id: {
+    type: Schema.Types.String,
+  },
 });
 
 const Task = model("Task", TaskSchema);

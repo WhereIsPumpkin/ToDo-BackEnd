@@ -1,4 +1,5 @@
 import Task from "../models/Task.js";
+import { v4 as uuidv4 } from "uuid";
 
 export const addTask = async (req, res) => {
   const { todoTask, done } = req.body;
@@ -6,6 +7,7 @@ export const addTask = async (req, res) => {
   const newTask = new Task({
     todoTask,
     done,
+    id: uuidv4(),
   });
 
   try {
