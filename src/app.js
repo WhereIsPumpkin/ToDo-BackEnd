@@ -1,6 +1,7 @@
 import express from "express";
 import connect from "./database/mongo.js";
 import dotenv from "dotenv";
+import cors from "cors";
 import path from "path";
 import { getAllTask } from "./controllers/Task-controller.js";
 import { addTask } from "./controllers/addTask-controller.js";
@@ -12,6 +13,8 @@ connect();
 const app = express();
 
 app.use(express.json());
+
+app.use(cors());
 
 app.use(
   express.static(path.join(new URL("../public", import.meta.url).pathname))
