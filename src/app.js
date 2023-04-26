@@ -28,8 +28,6 @@ const options = {
   customSiteTitle: "ToDo APP - Swagger API",
 };
 
-app.use("/", swaggerUi.serve, swaggerUi.setup(swaggerDocument, options));
-
 app.use(
   express.static(path.join(new URL("../public", import.meta.url).pathname))
 );
@@ -41,5 +39,7 @@ app.post("/api/projects", addTask);
 app.patch("/api/projects/:id", toggleTask);
 
 app.delete("/api/projects/:id", removeTask);
+
+app.use("/", swaggerUi.serve, swaggerUi.setup(swaggerDocument, options));
 
 app.listen(3000);

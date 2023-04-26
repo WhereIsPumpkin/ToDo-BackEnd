@@ -4,7 +4,7 @@ info:
   description: API for managing tasks in a ToDo app.
   version: 1.0.0
 schemes:
-  - https
+  - http
 paths:
   /api/projects:
     get:
