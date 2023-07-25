@@ -42,4 +42,4 @@ app.delete("/api/projects/:id", removeTask);
 
 app.use("/", swaggerUi.serve, swaggerUi.setup(swaggerDocument, options));
 
-app.listen(3000);
+app.listen(6060);
