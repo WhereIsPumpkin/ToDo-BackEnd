@@ -9,7 +9,7 @@
 * [Features](#features)
 * [Setup](#setup)
 * [Usage](#usage)
-* 
+  
 ## General Information
 
 This backend API powers the task management system of a To-Do application. Key features include creating, reading, updating, and deleting tasks, underpinned by a MongoDB database. The API design offers RESTful endpoints to streamline data interactions.
