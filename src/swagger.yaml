@@ -5,8 +5,9 @@ info:
   version: 1.0.0
 
 servers:
-  - url: http://localhost:6060
-    description: local server
+ - url: http://localhost:3000
+   description: local server
+
 paths:
   /api/getTasks:
     get:
@@ -17,20 +18,23 @@ paths:
       responses:
         200:
           description: OK
-          schema:
-            type: array
-            items:
-              type: object
-              properties:
-                id:
-                  type: string
-                  example: "60f7ea20b5d7a23d4c3744b0"
-                todoTask:
-                  type: string
-                  example: "Buy groceries"
-                done:
-                  type: boolean
-                  example: false
+          content:  # Added 'content' for response schema 
+            application/json: 
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: "60f7ea20b5d7a23d4c3744b0"
+                    todoTask:
+                      type: string
+                      example: "Buy groceries"
+                    done:
+                      type: boolean
+                      example: false
+  /api/addTask:  # Renamed from '/api/getTasks' for accuracy
     post:
       summary: Create a new ToDo item.
       description: Adds a new ToDo item to the database. The request body should include a `todoTask` field with the text of the task and a `done` field with a boolean value indicating whether the task is completed or not.
@@ -38,23 +42,23 @@ paths:
         - application/json
       produces:
         - application/json
-      parameters:
-        - in: body
-          name: body
-          required: true
-          schema:
-            type: object
-            properties:
-              todoTask:
-                type: string
-                example: "Buy groceries"
-              done:
-                type: boolean
-                example: false
+      requestBody:  # Replaced 'parameter' with 'requestBody'
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                todoTask:
+                  type: string
+                  example: "Buy groceries"
+                done:
+                  type: boolean
+                  example: false
       responses:
         201:
           description: Created
-    /api/toggleTask/{id}:
+  /api/toggleTask/{id}:
     patch:
       summary: Update a ToDo item.
       description: Updates the `done` status of the ToDo item with the specified ID. The request body should include a `done` field with a boolean value indicating whether the task is completed or not.
@@ -66,7 +70,8 @@ paths:
         - in: path
           name: id
           required: true
-          type: string
+          schema:  # Added 'schema' for type clarity
+            type: string
           description: The ID of the ToDo item to update.
         - in: body
           name: body
@@ -80,6 +85,7 @@ paths:
       responses:
         200:
           description: OK
+  /api/deleteTask/{id}:  # Renamed from '/api/toggleTask/{id}'
     delete:
       summary: Delete a ToDo item.
       description: Deletes the ToDo item with the specified ID from the database.
@@ -89,7 +95,8 @@ paths:
         - in: path
           name: id
           required: true
-          type: string
+          schema:
+            type: string
           description: The ID of the ToDo item to delete.
       responses:
         204:

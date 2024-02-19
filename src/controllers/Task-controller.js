@@ -8,7 +8,6 @@ export const getAllTask = async (req, res) => {
 }
 
 export const addTask = async (req, res) => {
-  console.log(req.body)
   const { todoTask, done } = req.body
 
   const newTask = new Task({
@@ -18,7 +17,7 @@ export const addTask = async (req, res) => {
   })
 
   await newTask.save()
-  console.log("Task added successfully")
+  
   return res.status(201).json({ message: "Task added successfully" })
 }
 
