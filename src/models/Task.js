@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, model } from "mongoose"
 
 const TaskSchema = new Schema({
   todoTask: {
@@ -12,8 +12,8 @@ const TaskSchema = new Schema({
   id: {
     type: Schema.Types.String,
   },
-});
+})
 
-const Task = model("Task", TaskSchema);
+const Task = model("Task", TaskSchema)
 
-export default Task;
+export default Task

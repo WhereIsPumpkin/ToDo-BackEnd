@@ -1,12 +1,12 @@
-import mongoose from "mongoose";
+import mongoose from "mongoose"
 
 const connect = () => {
-  const url = process.env.MONGO_URL;
+  const url = process.env.MONGO_URL
   try {
-    mongoose.connect(url);
+    mongoose.connect(url)
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
-};
+}
 
-export default connect;
+export default connect

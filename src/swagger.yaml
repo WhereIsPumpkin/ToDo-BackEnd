@@ -5,12 +5,10 @@ info:
   version: 1.0.0
 
 servers:
-  - url: https://drab-jade-adder-wrap.cyclic.app/
-    description: production server
   - url: http://localhost:6060
     description: local server
 paths:
-  /api/projects:
+  /api/getTasks:
     get:
       summary: Retrieve a list of all ToDo items.
       description: Returns an array of ToDo items stored in the database. Each item includes a unique ID, a description of the task (`todoTask`), and a boolean value (`done`) indicating whether the task is completed or not.
@@ -56,7 +54,7 @@ paths:
       responses:
         201:
           description: Created
-    /api/projects/{id}:
+    /api/toggleTask/{id}:
     patch:
       summary: Update a ToDo item.
       description: Updates the `done` status of the ToDo item with the specified ID. The request body should include a `done` field with a boolean value indicating whether the task is completed or not.
